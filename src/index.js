@@ -119,7 +119,13 @@
         let poi = segment.pois[j];
 
         if (list[list.length - 1] !== poi) {
-          list.push(poi);
+          //如果 list 存在 poi ，则添加 poi 的 clone
+          if (list.indexOf(poi) !== -1 && typeof poi.clone === 'function') {
+            let clonePoi = poi.clone();
+            list.push(clonePoi);
+          } else {
+            list.push(poi);
+          }
         }
       }
     }
