@@ -86,7 +86,7 @@
    * @param  {string} linestring 格式: [linestring](https://msdn.microsoft.com/en-us/library/bb895372.aspx)
    * @param  {number} buffer 单位:米
    * @param  {object} pois {x: number, y: number}
-   * @returns {function} 排序函数
+   * @returns {object} {list: Array, news: Array} list 全部数据, news 新增的 clone 数据
    */
   const sorter = function (linestring, buffer, pois) {
     let segments = linstringToSegments(linestring);
@@ -111,6 +111,7 @@
     }
 
     let list = [];
+    let news = [];//存储 clone 的 features
 
     for (let i = 0, size = segments.length; i < size; i++) {
       let segment = segments[i];
@@ -123,6 +124,7 @@
           if (list.indexOf(poi) !== -1 && typeof poi.clone === 'function') {
             let clonePoi = poi.clone();
             list.push(clonePoi);
+            news.push(clonePoi);
           } else {
             list.push(poi);
           }
@@ -130,7 +132,10 @@
       }
     }
 
-    return list;
+    return {
+      list: list, //全部的 features
+      news: news  //新增的 clone 出来的 features
+    };
   };
 
   window.sortPoisInLinestringBufferByDirection = sorter;

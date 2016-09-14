@@ -1,6 +1,6 @@
 {
   "name": "sort-pois-in-linestring-buffer-by-direction",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "沿 linestring 方向排序 linestring 缓冲区内的 pois ",
   "main": "index.js",
   "scripts": {
