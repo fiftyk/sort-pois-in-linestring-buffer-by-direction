@@ -57,7 +57,7 @@
    * @returns {Array} segments
    */
   function linstringToSegments(linstring) {
-    let arys = linstring.replace(/^LINESTRING\(/, '').replace(/\)/).split(/,/);
+    let arys = linstring.replace(/^LINESTRING\(/, '').replace(/\)/, '').split(/,/);
     let segments = [];
 
     for (let i = 0, size = arys.length - 1; i < size; i++) {
